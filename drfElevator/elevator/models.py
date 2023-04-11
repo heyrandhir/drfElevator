@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Elevator(models.model):
+class Elevator(models.Model):
     current_floor = models.IntegerField(default=0)
     direction = models.CharField(
         max_length=10, default="N"
@@ -15,7 +15,7 @@ class Elevator(models.model):
         return f"Elevator {self.id}"
 
 
-class Request(models.model):
+class Request(models.Model):
     floor_no = models.IntegerField(default=0)
 
     def __str__(self):
