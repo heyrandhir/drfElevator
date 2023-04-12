@@ -19,10 +19,34 @@ from elevator import views
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(r"elevator", views.ElevatorView, basename="elevator")
-router.register(r"request", views.RequestView, basename="request")
+router.register(r"elevator", views.ElevatorViewSet, basename="elevator")
+router.register(r"request", views.RequestViewSet, basename="request")
+
+routes = router.get_routes(views.ElevatorViewSet)
+# for route in routes:
+#     print(route.url, route.mapping)
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
+    path(
+        "api/elevator/bulk_create_elevators/",
+        views.ElevatorViewSet.as_view({"post": "bulk_create_elevators"}),
+    ),
+    path(
+        "api/elevator/<int:pk>/set_operational/<int:is_operational>/",
+        views.ElevatorViewSet.as_view({"post": "set_operational"}),
+        name="elevator_set_operational",
+    ),
+    path(
+        "api/elevator/<int:pk>/set_door_status/<int:is_door_open>/",
+        views.ElevatorViewSet.as_view({"post": "set_door_status"}),
+        name="elevator_set_door_status",
+    ),
+    path(
+        "elevator/<int:pk>/requests/",
+        views.ElevatorViewSet.as_view({"get": "requests"}),
+        name="elevator-requests",
+    ),
 ]

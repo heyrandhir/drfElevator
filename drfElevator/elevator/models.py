@@ -7,16 +7,43 @@ class Elevator(models.Model):
     direction = models.CharField(
         max_length=10, default="N"
     )  # N for north and S for south
-    request = models.ManyToManyField("Request", blank=True)
     is_door_open = models.BooleanField(default=False)
     is_operational = models.BooleanField(default=True)
 
     def __str__(self):
         return f"Elevator {self.id}"
 
+    def add_request(self, request):
+        self.request.add(request)
+
+    def get_nearest_elevator(floor_no):
+        nearest_elevator = None
+        nearest_distance = float("inf")
+        elevators = Elevator.objects.filter(is_operational=True)
+
+        if not elevators.exists():
+            return None
+        elevator_distances = []
+        for elevator in elevators:
+            distance = abs(elevator.current_floor - floor_no)
+            elevator_distances.append(distance)
+
+        for elevator in elevators:
+            distance = abs(elevator.current_floor - floor_no)
+            if distance < nearest_distance:
+                nearest_distance = distance
+                nearest_elevator = elevator
+        print(nearest_elevator)
+        return nearest_elevator
+
 
 class Request(models.Model):
-    floor_no = models.IntegerField(default=0)
-
-    def __str__(self):
-        return f"Request to floor {self.floor_no}"
+    elevator = models.ForeignKey(
+        Elevator,
+        related_name="requests",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
+    floor = models.IntegerField(default=0)
+    timestamp = models.DateTimeField(auto_now_add=True)
