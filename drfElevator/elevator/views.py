@@ -41,11 +41,42 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @action(detail=True, methods=["get"])
-    def get_elevator_requests(self, request, pk=None):
+    def requests(self, request, pk=None):
         elevator = self.get_object()
-        requests = elevator.requests.all()
+        requests = Request.objects.filter(elevator=elevator)
         serializer = RequestSerializer(requests, many=True)
         return Response(serializer.data)
+
+    @action(detail=False, methods=["post"])
+    def request_elevator(self, request):
+        desired_floor = request.data.get("floor")
+        nearest_elevator = Elevator.get_nearest_elevator(desired_floor)
+        current_floor = nearest_elevator.current_floor
+
+        if nearest_elevator:
+            nearest_elevator.set_direction(desired_floor)
+            nearest_elevator.set_current_floor(desired_floor)
+            request_obj = Request(floor=desired_floor, elevator=nearest_elevator)
+            request_obj.save()
+
+            return Response(
+                {
+                    "message": f"Request full filled by elevator {nearest_elevator.id} from floor {current_floor}"
+                }
+            )
+        else:
+            return Response(
+                {"message": "No available elevators."}, status=status.HTTP_404_NOT_FOUND
+            )
+
+    @action(detail=True, methods=["get"])
+    def get_direction(self, request, pk=None):
+        elevator = self.get_object()
+        return Response(
+            {
+                "message": f"The current direction of the elevator {elevator.id} is {elevator.direction}"
+            }
+        )
 
 
 class RequestViewSet(viewsets.ModelViewSet):

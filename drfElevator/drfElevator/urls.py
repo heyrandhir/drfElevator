@@ -23,9 +23,6 @@ router.register(r"elevator", views.ElevatorViewSet, basename="elevator")
 router.register(r"request", views.RequestViewSet, basename="request")
 
 routes = router.get_routes(views.ElevatorViewSet)
-# for route in routes:
-#     print(route.url, route.mapping)
-
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -45,8 +42,16 @@ urlpatterns = [
         name="elevator_set_door_status",
     ),
     path(
-        "elevator/<int:pk>/requests/",
+        "api/elevator/<int:pk>/requests/",
         views.ElevatorViewSet.as_view({"get": "requests"}),
         name="elevator-requests",
+    ),
+    path(
+        "api/elevator/request_elevator/",
+        views.ElevatorViewSet.as_view({"post": "request_elevator"}),
+    ),
+    path(
+        "api/elevator/<int:pk>/get_direction/",
+        views.ElevatorViewSet.as_view({"get": "get_direction"}),
     ),
 ]

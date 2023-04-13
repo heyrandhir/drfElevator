@@ -33,8 +33,20 @@ class Elevator(models.Model):
             if distance < nearest_distance:
                 nearest_distance = distance
                 nearest_elevator = elevator
-        print(nearest_elevator)
+        print(
+            {"nearest_elevator": nearest_elevator, "nearest_distance": nearest_distance}
+        )
         return nearest_elevator
+
+    def set_current_floor(self, floor):
+        self.current_floor = floor
+        self.save()
+
+    def set_direction(self, desired_floor):
+        if desired_floor == self.current_floor:
+            return
+        self.direction = "N" if desired_floor > self.current_floor else "S"
+        self.save()
 
 
 class Request(models.Model):
