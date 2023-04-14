@@ -14,8 +14,44 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from elevator import views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r"elevator", views.ElevatorViewSet, basename="elevator")
+router.register(r"request", views.RequestViewSet, basename="request")
+
+routes = router.get_routes(views.ElevatorViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
+    path(
+        "api/elevator/bulk_create_elevators/",
+        views.ElevatorViewSet.as_view({"post": "bulk_create_elevators"}),
+    ),
+    path(
+        "api/elevator/<int:pk>/set_operational/<int:is_operational>/",
+        views.ElevatorViewSet.as_view({"post": "set_operational"}),
+        name="elevator_set_operational",
+    ),
+    path(
+        "api/elevator/<int:pk>/set_door_status/<int:is_door_open>/",
+        views.ElevatorViewSet.as_view({"post": "set_door_status"}),
+        name="elevator_set_door_status",
+    ),
+    path(
+        "api/elevator/<int:pk>/requests/",
+        views.ElevatorViewSet.as_view({"get": "requests"}),
+        name="elevator-requests",
+    ),
+    path(
+        "api/elevator/request_elevator/",
+        views.ElevatorViewSet.as_view({"post": "request_elevator"}),
+    ),
+    path(
+        "api/elevator/<int:pk>/get_direction/",
+        views.ElevatorViewSet.as_view({"get": "get_direction"}),
+    ),
 ]
