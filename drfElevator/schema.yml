@@ -1,0 +1,646 @@
+openapi: 3.0.3
+info:
+  title: Drf Elevator
+  version: 0.0.0
+paths:
+  /api/elevator/:
+    get:
+      operationId: elevator_list
+      description: API endpoint that allows elevators to be viewed or edited.
+      tags:
+      - elevator
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Elevator'
+          description: ''
+    post:
+      operationId: elevator_create
+      description: API endpoint that allows elevators to be viewed or edited.
+      tags:
+      - elevator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+  /api/elevator/{id}/:
+    get:
+      operationId: elevator_retrieve
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this elevator.
+        required: true
+      tags:
+      - elevator
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+    put:
+      operationId: elevator_update
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this elevator.
+        required: true
+      tags:
+      - elevator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+    patch:
+      operationId: elevator_partial_update
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this elevator.
+        required: true
+      tags:
+      - elevator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedElevator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedElevator'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedElevator'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+    delete:
+      operationId: elevator_destroy
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this elevator.
+        required: true
+      tags:
+      - elevator
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/elevator/{id}/get_direction/:
+    get:
+      operationId: elevator_get_direction_retrieve
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this elevator.
+        required: true
+      tags:
+      - elevator
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+  /api/elevator/{id}/requests/:
+    get:
+      operationId: elevator_requests_retrieve
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this elevator.
+        required: true
+      tags:
+      - elevator
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+  /api/elevator/{id}/set_door_status/:
+    post:
+      operationId: elevator_set_door_status_create
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this elevator.
+        required: true
+      tags:
+      - elevator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+  /api/elevator/{id}/set_door_status/{is_door_open}/:
+    post:
+      operationId: elevator_set_door_status_create_2
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: is_door_open
+        schema:
+          type: integer
+        required: true
+      tags:
+      - elevator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+  /api/elevator/{id}/set_operational/:
+    post:
+      operationId: elevator_set_operational_create
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this elevator.
+        required: true
+      tags:
+      - elevator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+  /api/elevator/{id}/set_operational/{is_operational}/:
+    post:
+      operationId: elevator_set_operational_create_2
+      description: API endpoint that allows elevators to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: is_operational
+        schema:
+          type: integer
+        required: true
+      tags:
+      - elevator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+  /api/elevator/bulk_create_elevators/:
+    post:
+      operationId: elevator_bulk_create_elevators_create
+      description: API endpoint that allows elevators to be viewed or edited.
+      tags:
+      - elevator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+  /api/elevator/request_elevator/:
+    post:
+      operationId: elevator_request_elevator_create
+      description: API endpoint that allows elevators to be viewed or edited.
+      tags:
+      - elevator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Elevator'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Elevator'
+          description: ''
+  /api/request/:
+    get:
+      operationId: request_list
+      description: API endpoint that allows requests to be viewed or edited.
+      tags:
+      - request
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Request'
+          description: ''
+    post:
+      operationId: request_create
+      description: API endpoint that allows requests to be viewed or edited.
+      tags:
+      - request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Request'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Request'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+          description: ''
+  /api/request/{id}/:
+    get:
+      operationId: request_retrieve
+      description: API endpoint that allows requests to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this request.
+        required: true
+      tags:
+      - request
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+          description: ''
+    put:
+      operationId: request_update
+      description: API endpoint that allows requests to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this request.
+        required: true
+      tags:
+      - request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Request'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Request'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+          description: ''
+    patch:
+      operationId: request_partial_update
+      description: API endpoint that allows requests to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this request.
+        required: true
+      tags:
+      - request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRequest'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+          description: ''
+    delete:
+      operationId: request_destroy
+      description: API endpoint that allows requests to be viewed or edited.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this request.
+        required: true
+      tags:
+      - request
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Elevator:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        current_floor:
+          type: integer
+        direction:
+          type: string
+          maxLength: 10
+        is_door_open:
+          type: boolean
+        is_operational:
+          type: boolean
+      required:
+      - id
+    PatchedElevator:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        current_floor:
+          type: integer
+        direction:
+          type: string
+          maxLength: 10
+        is_door_open:
+          type: boolean
+        is_operational:
+          type: boolean
+    PatchedRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        floor:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        elevator:
+          type: integer
+          nullable: true
+    Request:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        floor:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        elevator:
+          type: integer
+          nullable: true
+      required:
+      - id
+      - timestamp
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
