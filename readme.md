@@ -45,3 +45,5 @@ Once the server is running, you can access the API endpoints through your web br
 ## Acknowledgements
 This project was developed as a challenge to implement the business logic for a simplified elevator model in Python using Django Rest Framework. The implementation of this project was based on the requirements provided.
 
+## Working Demo
+The working demo is available at https://www.loom.com/share/86cfd25173634b3791c59a234772ed90
