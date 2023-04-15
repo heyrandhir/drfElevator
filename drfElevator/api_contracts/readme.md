@@ -20,7 +20,8 @@ This endpoint allows retrieving all elevators<br />
         "is_operational": "true || false"
     },
     "<Elevator Object 2>",
-    ...
+    "...",
+    "<Elevator Object N>",
 ]
 ```
 ---
@@ -183,7 +184,7 @@ Updates the operational state of a specific elevator<br />
 ---
 **Endpoint** : /api/elevator/<int:pk>/get_direction/<br />
 
-**Method** : POST<br />
+**Method** : GET<br />
 **Path Parameters** : Elevator Id (Integer)<br />
 **Body Parameters** : None<br />
 
