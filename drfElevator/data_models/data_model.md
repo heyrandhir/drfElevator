@@ -1,7 +1,7 @@
-#Data Model
+# Data Model
 The following data model represents the entities and relationships in the elevator system:
 
-##Elevator
+## Elevator
 The Elevator model represents an elevator in the system.
 
 | **Field**            | **Type**       | **Description**                                                  |
@@ -12,7 +12,7 @@ The Elevator model represents an elevator in the system.
 | `**is_door_open**`   | `BooleanField` | Indicates whether the door of the elevator is open or not.       |
 | `**is_operational**` | `BooleanField` | Indicates whether the elevator is operational or not.            |
 
-##Request
+## Request
 The Request model represents a request made by a user.
 
 | **Field**       | **Type**       | **Description**                                  |
