@@ -1,15 +1,15 @@
 # API Contracts
 
-## Endpoint : /api/elevator/
+**Endpoint** : /api/elevator/
 
-### Method : GET
-### Path Parameters : None
-### Body Parameters : None
+**Method** : GET
+**Path Parameters** : None
+**Body Parameters** : None
 
-### Description :
+**Description** :
 This endpoint allows retrieving all elevators
 
-### Response: 
+**Response**: 
 ```json
 [
     {
@@ -23,17 +23,17 @@ This endpoint allows retrieving all elevators
     ...
 ]
 ```
+---
+**Endpoint** : /api/request/
 
-## Endpoint : /api/request/
+**Method** : GET
+**Path Parameters** : None
+**Body Parameters** : None
 
-### Method : GET
-### Path Parameters : None
-### Body Parameters : None
-
-### Description :
+**Description** :
 This endpoint allows retrieving all the requests
 
-### Response: 
+**Response**: 
 ```json
 [
     {
@@ -43,20 +43,20 @@ This endpoint allows retrieving all the requests
         "elevator": "Elevator Id",
     },
     "<Request Object 2>",
-    ...
+    "..."
 ]
 ```
+---
+**Endpoint** : /api/elevator/<int:pk>/
 
-## Endpoint : /api/elevator/<int:pk>/
+**Method** : GET
+**Path Parameters** : Elevator Id
+**Body Parameters** : None
 
-### Method : GET
-### Path Parameters : Elevator Id
-### Body Parameters : None
-
-### Description :
+**Description** :
 Retrieves the current state of a specific elevator
 
-### Response: 
+**Response**: 
 ```json
 {
     "id": "Elevator Object Id",
@@ -66,17 +66,17 @@ Retrieves the current state of a specific elevator
     "is_operational": "true || false"
 }
 ```
+---
+**Endpoint** : /api/elevator/<int:pk>/requests/
 
-## Endpoint : /api/elevator/<int:pk>/requests/
+**Method** : GET
+**Path Parameters** : Elevator Id
+**Body Parameters** : None
 
-### Method : GET
-### Path Parameters : Elevator Id
-### Body Parameters : None
-
-### Description :
+**Description** :
 Retrieves the requests associated with a specific elevator
 
-### Response: 
+**Response**: 
 ```json
 [
     {
@@ -85,16 +85,16 @@ Retrieves the requests associated with a specific elevator
         "timestamp": "timestamp",
         "elevator": "request fullfilled elevator"
     },
-    <Request Object 2>,
-    ...
+    "<Request Object 2>",
+    "..."
 ]
 ```
+---
+**Endpoint** : /api/elevator/request_elevator/
 
-## Endpoint : /api/elevator/request_elevator/
-
-### Method : POST
-### Path Parameters : None
-### Body Parameters : 
+**Method** : POST
+**Path** Parameters : None
+**Body** Parameters : 
 ```json
 {
     "floor" :  floorNumber
@@ -102,51 +102,51 @@ Retrieves the requests associated with a specific elevator
 ```
 
 
-### Description :
+**Description** :
 Sends a request to schedule an elevator to the desired floor
 
-### Response: 
+**Response**: 
 ```json
 {
     "message": "Request full filled by elevator N from floor K"
 }
 ```
+---
+**Endpoint** : /api/elevator/bulk_create_elevators/
 
-## Endpoint : /api/elevator/bulk_create_elevators/
-
-### Method : POST
-### Path Parameters : None
-### Body Parameters : 
+**Method** : POST
+**Path Parameters** : None
+**Body Parameters** : 
 ```json
 {
-    "num_elevators" : N
+    "num_elevators" : "N"
 }
 ```
 
 
-### Description :
+**Description** :
 Creates N number of elevators in bulk
 
-### Response: 
+**Response**: 
 ```json
 {
     "message": "N elevators created successfully"
 }
 ```
+---
+**Endpoint** : /api/elevator/<int:pk>/set_operational/<int:is_operational>/
 
-## Endpoint : /api/elevator/<int:pk>/set_operational/<int:is_operational>/
-
-### Method : POST
-### Path Parameters : 
+**Method** : POST
+**Path Parameters** : 
 - [x] first param - Elevator Id (Integer)
 - [x] second param - Operation State (Integer) 1 - Operational , 0 - Non-Operational
-### Body Parameters : None
+**Body Parameters** : None
 
 
-### Description :
+**Description** :
 Updates the operational state of a specific elevator
 
-### Response: 
+**Response**: 
 ```json
 {
     "id": "Elevator Id",
@@ -156,20 +156,20 @@ Updates the operational state of a specific elevator
     "is_operational": "**desired Operation State (true || false)**",
 }
 ```
+---
+**Endpoint** : /api/elevator/<int:pk>/set_door_status/<int:is_door_open>/
 
-## Endpoint : /api/elevator/<int:pk>/set_door_status/<int:is_door_open>/
-
-### Method : POST
-### Path Parameters : 
+**Method** : POST
+**Path Parameters** : 
 - [x] first param - Elevator Id (Integer)
 - [x] second param - Door State (Integer) 1 - open , 0 - Closed
-### Body Parameters : None
+**Body Parameters** : None
 
 
-### Description :
+**Description** :
 Updates the operational state of a specific elevator
 
-### Response: 
+**Response**: 
 ```json
 {
     "id": "Elevator Id",
@@ -179,18 +179,18 @@ Updates the operational state of a specific elevator
     "is_operational": "true || false",
 }
 ```
+---
+**Endpoint** : /api/elevator/<int:pk>/get_direction/
 
-## Endpoint : /api/elevator/<int:pk>/get_direction/
-
-### Method : POST
-### Path Parameters : Elevator Id (Integer)
-### Body Parameters : None
+**Method** : POST
+**Path Parameters** : Elevator Id (Integer)
+**Body Parameters** : None
 
 
-### Description :
+**Description** :
 Gets the direction in which the specific elevator is moving i,e (North - N or South - S)
 
-### Response: 
+**Response**: 
 ```json
 {
     "message": "The current direction of the elevator K is X"
