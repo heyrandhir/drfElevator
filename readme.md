@@ -1,8 +1,8 @@
-#Elevator Simulation
+# Elevator Simulation
 
 This project implements the business logic for a simplified elevator model in Python using Django Rest Framework. The elevator system can be initialized with N elevators and maintains the elevator states.
 
-##Getting Started
+## Getting Started
 To run the elevator simulation, you need to have Python and Django installed on your machine. If you don't have them installed, please download and install them from the following links:
 
 - [ ] [Python](https://www.python.org/downloads/)
@@ -12,14 +12,14 @@ To run the elevator simulation, you need to have Python and Django installed on 
 
 Once you have installed Python and Django, clone this repository on your machine and navigate to the project directory in your terminal.
 
-##Installation
+## Installation
 To install the dependencies required for this project, run the following command in your terminal:
 
 ```js
 pip install -r requirements.txt
 ```
 
-##Usage
+## Usage
 To start the Django server and run the elevator simulation, run the following command in your terminal:
 
 ```js
@@ -28,7 +28,7 @@ python3 manage.py runserver
 
 Once the server is running, you can access the API endpoints through your web browser or a tool like Postman.
 
-##API Endpoints
+## API Endpoints
 
   - [ ] /api/elevator/ - GET: Retrieves the current state of all elevators
   - [ ] /api/elevator/<int:pk>/ - GET: Retrieves the current state of a specific elevator
@@ -41,6 +41,6 @@ Once the server is running, you can access the API endpoints through your web br
   - [ ] api/schema/docs/ GET : Gets the API contracts Swagger documentation
 
 
-##Acknowledgements
+## Acknowledgements
 This project was developed as a challenge to implement the business logic for a simplified elevator model in Python using Django Rest Framework. The implementation of this project was based on the requirements provided.
 
