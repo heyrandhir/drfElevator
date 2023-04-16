@@ -26,6 +26,11 @@ class ElevatorViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["post"])
     def set_operational(self, request, pk=None, is_operational=None):
+        if is_operational not in [0, 1]:
+            return Response(
+                {"error": "is_operational should be either 0 or 1"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         elevator = self.get_object()
         elevator.is_operational = bool(is_operational)
         elevator.save()
@@ -34,6 +39,11 @@ class ElevatorViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["post"])
     def set_door_status(self, request, pk=None, is_door_open=None):
+        if is_door_open not in [0, 1]:
+            return Response(
+                {"error": "is_operational should be either 0 or 1"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         elevator = self.get_object()
         elevator.is_door_open = bool(is_door_open)
         elevator.save()
